@@ -1,0 +1,121 @@
+<div class="container">
+  <h1>Weather Application</h1>
+
+  <div class="search-container">
+    <input type="text" [(ngModel)]="city" id="city" placeholder="Enter city name" />
+    <button (click)="seeWeather()">See weather</button>
+  </div>
+
+  <div *ngIf="weather" class="weather-card">
+    <h2>the Weather in {{ city }}</h2>
+    <div class="weather-info">
+      <p>Temperature: {{ weather.main.temp }}°C</p>
+      <p>Condition: {{ weather.weather[0].description }}</p>
+    </div>
+
+    <div class="weather-image">
+      <div [ngSwitch]="weather.weather[0].description">
+        <div *ngSwitchCase="'sun'">
+          <img
+            src="https://media1.thehungryjpeg.com/thumbs/800_3588095_4iw4a7pi29xf7hlcdcyzo6tf0nhr95less9zx9yf.jpg"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'clear sky'">
+          <img
+            src="https://cdn3.iconfinder.com/data/icons/weather-575/64/Sun-512.png"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'few clouds'">
+          <img
+            src="https://st4.depositphotos.com/4177785/22315/v/450/depositphotos_223150980-stock-illustration-partly-cloudy-color-icon-cloudy.jpg"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'cattered clouds'">
+          <img
+            src="https://www.psdgraphics.com/file/blue-clouds-icon.jpg"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'broken clouds'">
+          <img
+            src="https://img.freepik.com/free-photo/fluffy-clouds-background_1409-7007.jpg?size=626&ext=jpg&ga=GA1.1.2116175301.1718928000&semt=ais_user"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'overcast clouds'">
+          <img
+            src="https://th.bing.com/th/id/OIP.WZDTP0oHTn4CfATD3EJxdAHaHa?w=198&h=198&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'moderate rain'">
+          <img
+            src="https://th.bing.com/th/id/OIP.gaK_wUBOa7_QCDOyk45DqQHaHa?w=209&h=209&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'heavy intensity rain'">
+          <img
+            src="https://img.lovepik.com/free-png/20210927/lovepik-rain-cloud-png-image_401548426_wh1200.png"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'snow'">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/012/806/416/small_2x/3d-cartoon-weather-icon-snow-clouds-and-snowflakes-sign-isolated-on-transparent-background-3d-render-illustration-png.png"
+            class="weather-img"
+          />
+        </div>
+        <div *ngSwitchCase="'light snow'">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/012/806/416/small_2x/3d-cartoon-weather-icon-snow-clouds-and-snowflakes-sign-isolated-on-transparent-background-3d-render-illustration-png.png"
+            class="weather-img"
+          />
+        </div>
+        <div [ngSwitch]="weather.weather[0].description">
+          <div *ngSwitchCase="'light rain'">
+            <img
+              src="https://th.bing.com/th/id/OIP.ghGE9BVHnt7Nr3veKKLjOgHaE8?w=226&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+              class="weather-img"
+            />
+          </div>
+
+        <div *ngSwitchCase="'heavy snow'">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/012/806/416/small_2x/3d-cartoon-weather-icon-snow-clouds-and-snowflakes-sign-isolated-on-transparent-background-3d-render-illustration-png.png"
+            class="weather-img"
+          />
+        </div>
+
+      </div>
+
+  </div>
+    </div>
+
+
+  <div class="forecast-section">
+    <div *ngIf="hour" class="forecast-card">
+      <h2>Today's weather changes</h2>
+      <div class="forecast-items">
+        <div *ngFor="let h of hour" class="forecast-item">
+          <p>{{ h.dt_txt | date : "shortTime" }}</p>
+          <p>{{ h.main.temp }}°C</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="week" class="forecast-card">
+      <h2>This Week's weather changes </h2>
+      <div class="forecast-items">
+        <div *ngFor="let d of week" class="forecast-item">
+          <p>{{ d.dt_txt }}</p>
+          <p>{{ d.main.temp }}°C</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
